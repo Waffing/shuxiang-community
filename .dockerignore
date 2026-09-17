@@ -1,0 +1,11 @@
+.git
+.env
+outputs
+work
+backups
+node_modules
+android/.gradle
+android/.kotlin
+android/local.properties
+android/**/build
+*.log

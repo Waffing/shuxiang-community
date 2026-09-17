@@ -1,0 +1,12 @@
+{
+  "releaseAvailable": false,
+  "versionCode": 2,
+  "versionName": "1.1.0",
+  "downloadUrl": null,
+  "sha256": null,
+  "fileSize": null,
+  "changelog": [
+    "完成正式发布安全检查后提供下载"
+  ],
+  "minSupportedVersionCode": 1
+}

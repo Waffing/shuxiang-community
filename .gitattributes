@@ -1,0 +1,15 @@
+* text=auto eol=lf
+*.sh text eol=lf
+*.php text eol=lf
+*.js text eol=lf
+*.cjs text eol=lf
+*.py text eol=lf
+*.yml text eol=lf
+*.md text eol=lf
+*.svg text eol=lf
+android/gradlew text eol=lf
+*.bat text eol=crlf
+*.br binary
+*.png binary
+*.jar binary
+*.zip binary

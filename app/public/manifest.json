@@ -1,0 +1,16 @@
+{
+  "name": "数享社区",
+  "short_name": "数享",
+  "description": "数字软件与资源分享社区",
+  "id": "/",
+  "start_url": "/#/home",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f6f7fb",
+  "theme_color": "#5b67f1",
+  "lang": "zh-CN",
+  "icons": [
+    {"src": "/assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+  ]
+}

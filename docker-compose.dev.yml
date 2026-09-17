@@ -1,0 +1,4 @@
+services:
+  db:
+    volumes:
+      - ./app/database/seed.sql:/docker-entrypoint-initdb.d/002_seed.sql:ro

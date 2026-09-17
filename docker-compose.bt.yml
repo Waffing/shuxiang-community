@@ -1,0 +1,13 @@
+services:
+  app:
+    ports:
+      - "127.0.0.1:9002:9000"
+    volumes:
+      - /www/wwwroot/forum.example.com/shared/uploads:/var/www/html/public/uploads
+  backup:
+    volumes:
+      - /www/wwwroot/forum.example.com/backups:/backups
+  nginx:
+    profiles: [full-stack]
+  certbot:
+    profiles: [full-stack]

@@ -1,0 +1,55 @@
+name: Source checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Build and verify assets
+        run: |
+          npm ci --ignore-scripts
+          npm run build
+          git diff --exit-code -- app/public/assets
+          node --check app/public/assets/app.js
+          node --check app/public/sw.js
+          node tests/frontend_release_test.js
+          node tests/pwa_test.js
+      - name: Deployment and migration regression checks
+        run: |
+          python3 tests/migration_test.py
+          python3 tests/android_release_config_test.py
+          python3 tests/nginx_release_test.py
+          find . -name '*.sh' -not -path './node_modules/*' -print0 | xargs -0 -n1 bash -n
+
+  php-image:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Build the distributable PHP runtime
+        run: docker build -f infra/php/Dockerfile -t shuxiang-php-ci .
+      - name: Verify runtime extensions and PHP tests
+        run: |
+          docker run --rm --network none -v "$PWD:/workspace:ro" -w /workspace shuxiang-php-ci sh -ec '
+            php -r '\''foreach (["mbstring", "pdo_mysql", "gd", "redis", "Zend OPcache"] as $module) { if (!extension_loaded($module)) { fwrite(STDERR, "Missing extension: $module\n"); exit(1); } } echo "PHP runtime extensions verified\n";'\''
+            find app tests -name "*.php" -exec php -l {} \;
+            php -d zend.assertions=1 -d assert.exception=1 tests/token_test.php
+            php -d zend.assertions=1 -d assert.exception=1 tests/security_boundary_test.php
+            php tests/runtime_security_test.php
+            php -n tests/cache_invalidation_test.php
+            php tests/backend_release_test.php
+          '
