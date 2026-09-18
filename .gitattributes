@@ -13,3 +13,9 @@ android/gradlew text eol=lf
 *.png binary
 *.jar binary
 *.zip binary
+app/public/assets/*.min.js linguist-generated=true
+app/public/assets/*.min.css linguist-generated=true
+app/public/assets/*.br linguist-generated=true
+docs/images/*.svg linguist-generated=true
+android/gradlew linguist-vendored=true
+android/gradlew.bat linguist-vendored=true

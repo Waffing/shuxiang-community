@@ -97,6 +97,17 @@ docker compose --env-file .env run --rm --no-deps \
 
 ### 隔离数据库与 HTTP 集成
 
+GitHub Actions 在 `php-image` 任务中复用刚构建的 PHP 镜像，运行真实 MariaDB 10.11、Redis 7、HTTP 与 multipart 上传测试。本机 Linux 只需 Docker Engine、Bash、Python 3 和 curl；这些 Python 测试使用标准库，无需安装 pip 依赖。
+
+```bash
+docker build -f infra/php/Dockerfile -t shuxiang-php-ci .
+bash scripts/test-integration.sh shuxiang-php-ci
+```
+
+脚本生成一次性凭据和独立网络，在临时源码副本中运行测试；数据库与 Redis 不发布端口，四个 PHP worker 仅通过 `127.0.0.1:18790` 接受本机请求。该端口需空闲。测试依次验证数据库业务、Cookie / Bearer 权限、并发回复、下载额度、密码轮换，以及伪造图片 / 超大像素拒绝与 WebP 生成。退出时清理本轮容器、测试卷、网络和临时文件，保留传入的 PHP 镜像。
+
+需要保留服务以继续浏览器测试时，使用下面的手工配置。
+
 下列示例需要 Linux、Docker Compose 和 Python 3，在独立开发检出目录运行。测试会创建、编辑与删除测试数据，数据库名称必须包含 `test`。
 
 ```bash

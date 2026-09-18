@@ -1,4 +1,8 @@
 <p align="center">
+  <strong>简体中文</strong> · <a href="README.en.md">English</a>
+</p>
+
+<p align="center">
   <img src="docs/images/cover.svg" alt="数享社区：让好软件被发现，让分享有回响" width="100%">
 </p>
 
@@ -6,40 +10,36 @@
 
 # 数享社区 · Shuxiang Community
 
-**把软件资源、使用经验和社区互动，放进同一个轻盈的界面。**
+**软件有版本，分享有回应，社区有秩序。**
 
-原生 PHP 驱动的开源资源社区，面向桌面、移动浏览器、PWA 与 Android WebView。
+用原生 PHP 和 JavaScript 构建的软件资源社区，覆盖桌面、移动浏览器、PWA 与 Android WebView。
+
+[![Source checks](https://github.com/Waffing/shuxiang-community/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Waffing/shuxiang-community/actions/workflows/ci.yml)
 
 <kbd>PHP 8.2</kbd> &nbsp; <kbd>MariaDB 10.11</kbd> &nbsp; <kbd>Redis 7</kbd> &nbsp; <kbd>Vanilla JS</kbd> &nbsp; <kbd>PWA</kbd> &nbsp; <kbd>Kotlin</kbd>
 
-[在线体验](https://2.bhsq.top/) · [部署指南](docs/GETTING_STARTED.md) · [开发手册](docs/DEVELOPMENT.md) · [参与贡献](CONTRIBUTING.md) · [MIT License](LICENSE)
+[界面预览](#界面预览) · [功能](#功能) · [快速部署](#快速部署) · [架构](#架构与开发) · [更新记录](CHANGELOG.md) · [最新版本](https://github.com/Waffing/shuxiang-community/releases/latest)
 
 </div>
 
----
-
-## 不只是一页下载链接
-
-资源有版本，投稿有审核，下载有边界，反馈有去处。数享社区把这些日常流程连接起来，同时保持源码直接、部署可理解。
-
-| 发现 | 分享 | 维护 |
+| 想先体验 | 想自己部署 | 想参与开发 |
 | :--- | :--- | :--- |
-| 中文搜索、平台与分类筛选、真实分页、周下载榜 | 多平台版本、更新日志、多下载源、收藏、回复与签到 | 投稿审核、作者编辑重审、失效举报、版权处理、审核记录 |
-
-**视觉也属于源码。** 系统图标、平台标识、空状态和默认软件头像由 SVG/CSS 绘制；未上传图标时，使用名称首字母与分类配色生成矢量头像，而不是依赖第三方随机图片。
+| [打开数享社区 →](https://2.bhsq.top/) | [部署与首次使用 →](docs/GETTING_STARTED.md) | [贡献指南 →](CONTRIBUTING.md) |
+| 浏览界面、搜索与社区交互 | 独立 Docker、已有 Nginx、本地预览 | 开发手册、问题反馈与 Pull Request |
 
 ## 界面预览
 
-> 以下 PNG 为**演示环境截图，非线上资源/用户数据**。示例条目仅用于展示交互，不代表真实软件推荐、授权声明或下载内容。
+以下截图来自**隔离演示环境**；示例软件、账户和下载内容只用于展示交互。
 
-### 桌面端 · 信息完整，层次清楚
+![桌面资源详情：版本、平台、说明与下载交互](docs/images/desktop-detail.png)
 
-![桌面资源详情：版本、平台、资源说明和下载交互](docs/images/desktop-detail.png)
+<details>
+<summary><strong>展开移动端预览 · 首页与资源详情</strong></summary>
 
 <table>
   <tr>
-    <th width="50%">移动首页 · 一屏开始探索</th>
-    <th width="50%">资源详情 · 版本与反馈一目了然</th>
+    <th width="50%">移动首页</th>
+    <th width="50%">资源详情</th>
   </tr>
   <tr>
     <td align="center"><img src="docs/images/mobile-home.png" alt="375px 移动端首页演示截图" width="320"></td>
@@ -47,80 +47,57 @@
   </tr>
 </table>
 
+</details>
+
 <details>
-<summary><strong>展开管理工作台预览</strong></summary>
+<summary><strong>展开管理工作台 · 投稿审核与反馈队列</strong></summary>
 
-![管理工作台：资源审核与处理队列，使用隔离测试账户](docs/images/desktop-moderation.png)
+![使用隔离测试账户展示的管理工作台](docs/images/desktop-moderation.png)
 
-后台入口为 `/#/admin`，由服务端校验管理员角色；知道地址并不意味着拥有管理权限。
+管理入口为 `/#/admin`；所有管理操作都由服务端校验角色。
 
 </details>
 
-## 已经能做什么
+## 功能
 
-### 01 / 资源是内容，不是附件堆积
+| 模块 | 当前能力 |
+| :--- | :--- |
+| **发现资源** | 中文关键词、平台 / 分类 / 时间 / 热度 / 访问条件组合筛选，真实分页与周下载榜 |
+| **管理版本** | Windows、macOS、Android、iOS、Linux 标签，版本号、更新日志、多下载源、哈希与解压密码 |
+| **参与社区** | 注册登录、收藏、回复、签到、积分、我的发布与个人中心 |
+| **审核内容** | 投稿待审、作者编辑后重审、审核原因与记录、首次批准奖励、失效举报与版权申请 |
+| **控制访问** | 回复 / 积分 / VIP 解锁，下载额度、短时令牌、Cookie / Bearer 认证、改密后撤销旧会话 |
+| **适配设备** | 移动筛选抽屉、键盘焦点管理、PWA 离线页面、Kotlin WebView 客户端源码 |
+| **便于维护** | 服务端详情与 SEO、Redis 缓存、数据库迁移、Docker Compose、HTTPS 与定时备份 |
 
-- Windows、macOS、Android、iOS、Linux 平台标签，版本号与折叠更新日志。
-- 站内直链与 HTTPS 外部下载源；展示实际填写的 MD5/SHA-256 与解压密码。
-- 回复、积分或 VIP 解锁条件；下载前统一检查权限和每日额度。
-- 结构化验证记录驱动的信任状态，不把上传者自述当作“安全认证”。
+**视觉也是源码。** 平台标识、界面图标、空状态和默认头像由 SVG/CSS 绘制。没有上传图标时，名称首字母与分类配色生成矢量头像；上传图片经处理生成 WebP。
 
-### 02 / 社区能运营，也能追溯
+信任状态来自结构化验证记录；文件哈希用于核对内容一致性。PWA 不缓存 API、下载附件或 `no-store` 响应。
 
-- 注册、登录、个人中心、收藏、签到和积分奖励。
-- 普通用户投稿进入待审；作者编辑后重新送审；首次批准奖励不重复发放。
-- 我的发布、管理员审核、审核原因、失效举报与版权下架申请。
-- 修改密码后撤销旧会话，浏览器 Cookie 与 API Bearer 两种认证路径。
+## 快速部署
 
-### 03 / 小屏顺手，大屏舒展
-
-- 卡片布局、移动筛选抽屉、键盘焦点循环、Escape 关闭和焦点恢复。
-- 中文关键词与平台、分类、更新时间、访问条件、热度组合查询。
-- 可抓取的软件详情页、canonical、Open Graph、JSON-LD、robots 与 sitemap。
-- PWA 安装、离线页面与更新提示；下载、API 和 `no-store` 响应不进入离线缓存。
-
-### 04 / 部署和源码一起交付
-
-- Docker Compose 包含 Nginx、PHP-FPM、MariaDB、Redis、Certbot 和定时备份。
-- 前端提供可读源码、压缩产物与 Brotli 产物，并校验页面 / Service Worker 版本一致性。
-- 完整建表结构、增量迁移和迁移账本；升级前备份，备份可验证。
-- Kotlin WebView 工程含缓存管理、外部链接、下载拦截与图片选择器。
-
-## 一眼看懂架构
-
-![数享社区架构：浏览器与客户端经 Nginx 进入 PHP API，连接 MariaDB、Redis 和受保护存储](docs/images/architecture.svg)
-
-| 层 | 实现 | 主要入口 |
-| :--- | :--- | :--- |
-| 页面与交互 | 原生 JavaScript / CSS、SVG、PWA | [`app/public/`](app/public/) |
-| 业务与权限 | PHP 8.2、PDO、Cookie / Bearer | [`app/src/`](app/src/) |
-| 数据与缓存 | MariaDB、Redis、迁移账本 | [`app/database/`](app/database/) |
-| 传输与运维 | Nginx、Compose、Certbot、备份 | [`infra/`](infra/) · [`deploy.sh`](deploy.sh) |
-| Android | Kotlin、WebView | [`android/`](android/) |
-
-这里没有为页面再引入一套大型前端框架。接口、页面、数据库和部署文件都在同一仓库，适合直接阅读、按模块修改。
-
-## 从源码到站点
-
-以下命令用于**全新、独立的 Linux Docker 环境**：准备 Docker Engine、Compose 插件、Git、OpenSSL；域名已解析，80/443 空闲且公网可访问。
+适用于**全新、独立的 Linux Docker 环境**。先准备 Docker Engine、Compose 插件、Git、OpenSSL，解析好域名，并确保 80/443 空闲且公网可达。
 
 ```bash
 git clone https://github.com/Waffing/shuxiang-community.git
 cd shuxiang-community
 cp .env.example .env
 
-read -r -p '请输入已解析的站点域名: ' DOMAIN
-read -r -p '请输入证书通知邮箱: ' CERTBOT_EMAIL
+read -r -p '站点域名: ' DOMAIN
+read -r -p '证书通知邮箱: ' CERTBOT_EMAIL
 DOMAIN="$DOMAIN" CERTBOT_EMAIL="$CERTBOT_EMAIL" bash deploy.sh
 
 curl -fsS "https://${DOMAIN}/health.php"
 ```
 
-脚本会为模板中的密钥字段生成随机值，初始化或迁移数据库，构建服务并申请 HTTPS 证书。已有数据库会先备份；新安装不自动创建管理员、不自动导入演示资源。
+脚本生成随机密钥、初始化或迁移数据库、构建服务并申请 HTTPS 证书；已有数据库先备份。健康结果应包含 `status: "ok"`、`database: true`、`redis: true`。
 
-**已有宝塔 / 宿主机 Nginx？** 不直接运行上面的独立部署命令。先阅读[部署方式与前置条件](docs/GETTING_STARTED.md)，使用独立站点模板与对应发布流程，避免端口冲突。
+新站不创建默认管理员，也不导入演示资源。注册自己的账户后，按[初始化管理员](docs/GETTING_STARTED.md#初始化管理员)完成设置。
 
-### 常用页面
+已有宝塔 / 宿主机 Nginx，或只想在本机预览？先选择[对应部署流程](docs/GETTING_STARTED.md)，避免独立部署命令占用已有服务端口。
+
+<details>
+<summary><strong>常用页面与接口入口</strong></summary>
 
 | 页面 | 路径 | 页面 | 路径 |
 | :--- | :--- | :--- | :--- |
@@ -129,32 +106,37 @@ curl -fsS "https://${DOMAIN}/health.php"
 | 个人中心 | `/#/account` | 管理工作台 | `/#/admin` |
 | 可抓取详情 | `/software/{slug}` | 健康检查 | `/health.php` |
 
-## 状态与边界
+API 动作与认证说明见[开发手册](docs/DEVELOPMENT.md#常用-api)。
 
-**已提供源码与回归测试：** 搜索分页、审核生命周期、下载配额、Cookie/Bearer、改密撤销、迁移结构、PWA 缓存与浏览器交互。测试类型与运行条件见[开发手册](docs/DEVELOPMENT.md#验证)。
+</details>
 
-**明确尚待完成：** Android 正式签名发布与真机专项验收；目标设备、目标网络下的 FCP/LCP/帧率测量。仓库没有预置“已达标”性能徽章，也没有可直接公开分发的签名 APK。
+## 架构与开发
 
-### 路线图 · 未完成项
+![浏览器与客户端经 Nginx 访问 PHP，连接 MariaDB、Redis 和受保护存储](docs/images/architecture.svg)
 
-- [ ] 邮件验证与账户恢复，补齐身份生命周期。
-- [ ] 监控告警、异地备份与定期恢复演练。
-- [ ] 移动真机性能基线与可重复的性能回归。
-- [ ] Android 签名发布、上传 / 下载 / 外部 App 真机验收。
-- [ ] 根据真实使用反馈完善搜索、审核与无障碍体验。
+| 要修改什么 | 从这里开始 |
+| :--- | :--- |
+| 页面、交互、图标与 PWA | [`app/public/`](app/public/) |
+| 资源、账户、下载与审核 | [`app/src/`](app/src/) |
+| 建表结构与增量迁移 | [`app/database/`](app/database/) |
+| Nginx、PHP 与容器部署 | [`infra/`](infra/) · [`deploy.sh`](deploy.sh) |
+| Android WebView | [`android/`](android/) |
 
-路线图是方向，不是当前功能清单。优先解决可复现的问题，再考虑增加新模块。
+线上请求由 PHP-FPM 处理；Node.js 仅用于资产构建与测试。修改前端源码后运行 `npm ci --ignore-scripts` 与 `npm run build`，同步压缩文件、Brotli、页面版本和 Worker 缓存版本。完整命令见[开发手册](docs/DEVELOPMENT.md)。
 
-## 一起把它做好
+[GitHub Actions](https://github.com/Waffing/shuxiang-community/actions/workflows/ci.yml)执行资产构建、PHP 镜像与扩展校验、权限和缓存回归，以及部署 / 迁移检查。仓库另有真实数据库、HTTP、上传和浏览器测试；运行条件见[验证说明](docs/DEVELOPMENT.md#验证)。
 
-欢迎带着复现步骤的 Bug、具体场景的功能建议和小而完整的 Pull Request。请先阅读[贡献约定](CONTRIBUTING.md)；涉及漏洞、凭证或私人数据的问题，请按[安全报告流程](SECURITY.md)处理。
+## 发布状态与路线图
 
-项目以 [MIT License](LICENSE) 开源。许可覆盖本仓库代码与原创视觉资产，不自动授予第三方软件、商标或用户上传内容的使用权。
+源码按 [MIT License](LICENSE) 发布，版本与变更见 [Releases](https://github.com/Waffing/shuxiang-community/releases) 和 [CHANGELOG](CHANGELOG.md)。Android 当前交付源码，**尚无正式签名 APK**；FCP/LCP 与帧率目标仍待目标设备、网络下的专项测量。
 
-<div align="center">
+- [ ] 邮件验证与账户恢复。
+- [ ] 监控告警、异地备份与恢复演练。
+- [ ] 真机性能基线、Android 签名发布与上传 / 下载验收。
+- [ ] 根据实际反馈改进搜索、审核和无障碍体验。
 
-**让好软件被发现，让分享有回响。**
+## 参与贡献
 
-[体验数享社区](https://2.bhsq.top/) · [提交 Issue](https://github.com/Waffing/shuxiang-community/issues) · [开始开发](docs/DEVELOPMENT.md)
+从一个可复现的 Bug 或明确的使用场景开始。请阅读[贡献指南](CONTRIBUTING.md)，使用 [Issue 表单](https://github.com/Waffing/shuxiang-community/issues/new/choose)提交反馈；涉及漏洞和凭据时按[安全政策](SECURITY.md)私下报告。
 
-</div>
+MIT 许可覆盖仓库代码与原创视觉资产。第三方依赖见[许可说明](THIRD_PARTY_NOTICES.md)；第三方软件、商标与用户上传内容仍需独立授权。

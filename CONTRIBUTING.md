@@ -4,14 +4,16 @@
 
 ## 报告问题
 
-请提供：
+使用[问题反馈表单](https://github.com/Waffing/shuxiang-community/issues/new?template=bug_report.yml)提交 Bug，请提供：
 
 1. 期望行为与实际行为。
 2. 从干净状态开始的最短复现步骤。
 3. 使用的提交、浏览器 / 系统、部署方式。
 4. 已去除身份与凭证信息的截图或错误输出。
 
-涉及凭证、权限绕过或私人数据的问题，请先阅读 [SECURITY.md](SECURITY.md)，不要提交到公开 Issue。
+功能建议使用[功能建议表单](https://github.com/Waffing/shuxiang-community/issues/new?template=feature_request.yml)，说明问题、提议与已考虑的替代办法。其他反馈可以从 [Issue 入口](https://github.com/Waffing/shuxiang-community/issues/new/choose)创建空白 Issue。
+
+涉及凭证、权限绕过或私人数据的问题，请使用[私密漏洞报告](https://github.com/Waffing/shuxiang-community/security/advisories/new)，并阅读 [SECURITY.md](SECURITY.md)。
 
 ## 开始修改
 
@@ -22,6 +24,8 @@
 - 对产品行为有重要疑问时先讨论，不把推测当成既定需求。
 
 ## 提交前检查
+
+按改动范围完成适用项：
 
 - [ ] 每个改动都能追溯到本次问题。
 - [ ] 受影响的 PHP / JS 语法、业务测试通过。
@@ -34,13 +38,7 @@
 
 ## Pull Request 内容
 
-```text
-问题：用户在什么场景遇到了什么？
-改动：涉及哪些模块，为什么这是最小修复？
-验证：实际执行了哪些命令，结果是什么？
-兼容性：数据库、缓存、客户端或部署是否需要同步？
-回滚：如何恢复本次应用改动；是否另需恢复数据？
-```
+创建 PR 时会自动填入[简短模板](.github/PULL_REQUEST_TEMPLATE.md)：说明问题、最小改动和实际验证结果。有相关 Issue 时附上链接；UI 变更附可公开的前后截图，数据库、缓存或部署变更说明同步与回滚步骤。
 
 新增原创视觉可使用 SVG / CSS；界面截图必须来自你可公开的演示数据。第三方素材或依赖需保留原许可，不把来源不明的软件安装包加入仓库。
 

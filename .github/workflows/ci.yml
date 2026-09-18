@@ -9,6 +9,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   checks:
     runs-on: ubuntu-24.04
@@ -46,10 +50,12 @@ jobs:
         run: |
           docker run --rm --network none -v "$PWD:/workspace:ro" -w /workspace shuxiang-php-ci sh -ec '
             php -r '\''foreach (["mbstring", "pdo_mysql", "gd", "redis", "Zend OPcache"] as $module) { if (!extension_loaded($module)) { fwrite(STDERR, "Missing extension: $module\n"); exit(1); } } echo "PHP runtime extensions verified\n";'\''
-            find app tests -name "*.php" -exec php -l {} \;
+            find app tests -name "*.php" -print0 | xargs -0 -n1 php -l
             php -d zend.assertions=1 -d assert.exception=1 tests/token_test.php
             php -d zend.assertions=1 -d assert.exception=1 tests/security_boundary_test.php
             php tests/runtime_security_test.php
             php -n tests/cache_invalidation_test.php
             php tests/backend_release_test.php
           '
+      - name: Database, HTTP and upload integration
+        run: bash scripts/test-integration.sh shuxiang-php-ci

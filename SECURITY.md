@@ -6,7 +6,7 @@
 
 ## 私下报告问题
 
-优先使用仓库 **Security → Report a vulnerability** 的私密报告入口（启用时可见）。如果入口尚未开放，请通过维护者 [GitHub 主页](https://github.com/Waffing) 的联系方式请求私下沟通；也可以在公开 Issue 仅请求一个私密联系渠道，不发布漏洞细节。
+仓库已启用私密漏洞报告。请使用 **Security → Report a vulnerability**，或直接[创建私密报告](https://github.com/Waffing/shuxiang-community/security/advisories/new)。若入口访问异常，可以在公开 Issue 仅请求私密联系渠道，不发布漏洞细节。
 
 报告建议包含：
 

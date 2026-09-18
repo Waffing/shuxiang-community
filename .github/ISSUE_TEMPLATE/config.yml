@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 部署与开发文档
+    url: https://github.com/Waffing/shuxiang-community/tree/main/docs
+    about: 查阅安装、配置、开发和测试说明。
+  - name: 私密漏洞报告
+    url: https://github.com/Waffing/shuxiang-community/security/advisories/new
+    about: 私下报告凭证泄露、权限绕过或私人数据相关问题。
