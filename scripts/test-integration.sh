@@ -57,7 +57,7 @@ for name, values in settings.items():
     (directory / name).write_text(''.join(f'{key}={value}\n' for key, value in values.items()))
 PY
 
-docker network create --internal "$network" >/dev/null
+docker network create "$network" >/dev/null
 docker run -d --name "$database" --network "$network" --network-alias db \
   --env-file "$scratch/db.env" \
   --mount "type=bind,src=$repo_root/app/database/schema.sql,dst=/docker-entrypoint-initdb.d/001_schema.sql,readonly" \
@@ -107,6 +107,8 @@ for ((attempt = 0; attempt < 30; attempt++)); do
 done
 if [[ $ready != true ]]; then
   printf 'HTTP health check failed\n' >&2
+  docker inspect --format 'HTTP state={{.State.Status}} exit={{.State.ExitCode}} ports={{json .NetworkSettings.Ports}}' "$http" >&2
+  docker logs --tail 20 "$http" >&2
   exit 1
 fi
 python3 - "$scratch/health.json" <<'PY'
